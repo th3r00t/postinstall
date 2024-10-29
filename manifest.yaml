@@ -1,0 +1,75 @@
+user:
+  name: "th3r00t"
+  email:
+    - "tty303@proton.me"
+  shell: "zsh"
+  dotfiles: "git@bitbucket.org:th3r00t/dotfiles.git" # uses stow to deploy
+
+packages:
+  - "base-devel"
+  - "cmake"
+  - "unzip"
+  - "ninja"
+  - "curl"
+  - "wget"
+  - "git"
+  - "zsh"
+  - "foot"
+  - "hyprland"
+  - "hyprpaper"
+  - "hypridle"
+  - "hyprlock"
+  - "uv"
+  - "emacs"
+  - "fzf"
+  - "ruby"
+  - "zig"
+  - "zls"
+  - "wofi"
+  - "tmux"
+  - "stow"
+  - "irssi"
+  - "direnv"
+  - "rsync"
+  - "go"
+  - "bat"
+  - "eza"
+  - "zsh"
+  - "lesspipe"
+
+extra_packages:
+  neovim:
+    urlType: "git"
+    url: "https://github.com/neovim/neovim"
+    build: "make CMAKE_BUILD_TYPE=RelWithDebInfo && sudo make install"
+  emacs:
+    urlType: "wget"
+    url: "http://ftp.gnu.org/gnu/emacs/emacs-29.4.tar.gz"
+    build: "tar -xzf emacs-29.4.tar.gz --strip-components=1 && mkdir -p build && cd build && ../configure && make -j$(nproc) && sudo make install"
+  rust:
+    urlType: "raw"
+    url: # in 'raw' mode url lists are run by subprocess.run(cmd, check=True) This is used to check if on path 
+      - "which"
+      - "rust"
+    build: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+  antigen:
+    urlType: "raw"
+    url: "~/.antigen.zsh"
+    build: "curl -L git.io/antigen-nightly > ~/.antigen.zsh"
+path:
+  - "~/.local/usr/bin"
+
+hosts:
+  "::1": ["localhost", "ip6-localhost", "ip6-loopback"]
+  "ff02::1": ["ip6-allnodes"]
+  "ff02::2": ["ip6-allrouters"]
+  "10.0.0.106": ["proxy", "proxy.local"]
+  "10.0.0.53": ["webserver", "webserver.local"]
+  "10.0.0.76": ["nas", "nas.local"]
+  "10.0.0.107": ["psql", "psql.local"]
+  "10.0.0.181": ["mongo", "mongo.local"]
+  "10.0.0.99": ["jelly", "jelly.local"]
+  "10.0.0.50": ["home", "home.local"]
+  "10.0.0.142": ["chronos", "chronos.local"]
+  "10.0.0.233": ["pve", "pve.local"]
+
